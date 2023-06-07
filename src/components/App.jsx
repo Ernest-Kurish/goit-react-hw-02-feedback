@@ -12,10 +12,9 @@ class App extends Component {
     bad: 0,
   };
 
-  onLeaveFeedback = (event) => {
-    const { textContent } = event.target;
+  onLeaveFeedback = (option) => {
     this.setState((prevState) => ({
-      [textContent.toLowerCase()]: prevState[textContent.toLowerCase()] + 1,
+      [option.toLowerCase()]: prevState[option.toLowerCase()] + 1,
     }));
   };
 
@@ -42,7 +41,10 @@ class App extends Component {
     return (
       <div className={styles.container}>
         <Section title="Please leave your feedback">
-          <FeedbackOptions onLeaveFeedback={this.onLeaveFeedback} />
+          <FeedbackOptions
+            options={['Good', 'Neutral', 'Bad']}
+            onLeaveFeedback={this.onLeaveFeedback}
+          />
         </Section>
         <Section title="Statistics">
           {this.checkFeedback() ? (
